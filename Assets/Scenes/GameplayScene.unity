@@ -522,7 +522,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.379, y: -0.882, z: -10}
+  m_LocalPosition: {x: -2.14, y: -0.85, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2551,7 +2551,7 @@ Transform:
   m_GameObject: {fileID: 1934399282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.379, y: -0.882, z: -10}
+  m_LocalPosition: {x: -2.14, y: -0.85, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2610,6 +2610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnightEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7585147452908660972, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2629,11 +2633,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9177376636483982116, guid: acbb312166d4adf53a6d53456d0c3857, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.379
+      value: -2.14
       objectReference: {fileID: 0}
     - target: {fileID: 9177376636483982116, guid: acbb312166d4adf53a6d53456d0c3857, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.882
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 9177376636483982116, guid: acbb312166d4adf53a6d53456d0c3857, type: 3}
       propertyPath: m_LocalPosition.z
