@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 // you cant add a player controller to a game object unless a rigidbody already exists
 // and if there is a player controller, you cant move the rigidbody from the game object until the player
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
     public float runSpeed = 8f;
-    public float airWalkSpeed = 3f;         
+    public float airWalkSpeed = 3f;
     public float jumpImpulse = 10f;
     private Vector2 _moveInput;
     private TouchingDirections _touchingDirections;
@@ -46,7 +47,6 @@ public class PlayerController : MonoBehaviour
                     // idle speed
                     return 0;
                 }
-                
             }
             else
             {
@@ -102,10 +102,12 @@ public class PlayerController : MonoBehaviour
 
     public bool CanMove
     {
-        get
-        {
-            return animator.GetBool(AnimationStrings.canMove);
-        }
+        get { return animator.GetBool(AnimationStrings.canMove); }
+    }
+
+    public bool IsAlive
+    {
+        get { return animator.GetBool(AnimationStrings.isAlive); }
     }
 
     private void Awake()
@@ -138,9 +140,16 @@ public class PlayerController : MonoBehaviour
     {
         _moveInput = context.ReadValue<Vector2>();
 
-        IsMoving = _moveInput != Vector2.zero;
+        if (IsAlive)
+        {
+            IsMoving = _moveInput != Vector2.zero;
 
-        SetFacingDirection(_moveInput);
+            SetFacingDirection(_moveInput);
+        }
+        else
+        {
+            IsMoving = false;
+        }
     }
 
     private void SetFacingDirection(Vector2 moveInput)
