@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
+    public UnityEvent<int, Vector2> damageableHit;
     private Animator animator;
 
     [SerializeField] private int _maxHealth = 100;
@@ -29,7 +31,6 @@ public class Damageable : MonoBehaviour
         {
             _isAlive = value;
             animator.SetBool(AnimationStrings.isAlive, value);
-            Debug.Log("IsAlive set" + value);
         }
     }
 
@@ -41,7 +42,7 @@ public class Damageable : MonoBehaviour
         set
         {
             health = value;
-            if (health < 0)
+            if (health <= 0)
             {
                 IsAlive = false;
             }
@@ -65,16 +66,21 @@ public class Damageable : MonoBehaviour
 
             _timeSinceHit += Time.deltaTime;
         }
-
-        Hit(10);
     }
 
-    public void Hit(int damage)
+    public bool Hit(int damage, Vector2 knockback)
     {
         if (IsAlive && !_isInvincible)
         {
             Health -= damage;
             _isInvincible = true;
+
+            animator.SetTrigger(AnimationStrings.hitTrigger);
+            damageableHit?.Invoke(damage, knockback);
+
+            return true;
         }
+
+        return false;
     }
 }

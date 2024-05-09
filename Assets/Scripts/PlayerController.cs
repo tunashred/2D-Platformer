@@ -124,14 +124,26 @@ public class PlayerController : MonoBehaviour
         // https://forum.unity.com/threads/animator-dont-use-setbool-string-name-with-string-parameter.406286/
     }
 
-    // Update is called once per frame
-    void Update()
+    // now playercontroller is not directly dependent on the damageable component
+    // but now we need to rewrite LockVelocity for any script that needs it
+    public bool LockVelocity
     {
+        get
+        {
+            return animator.GetBool(AnimationStrings.lockVelocity);
+        }
+        set
+        {
+            animator.SetBool(AnimationStrings.lockVelocity, value);
+        }
     }
-
+    
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(_moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+        if (!LockVelocity)
+        {
+            rb.velocity = new Vector2(_moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+        }
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
     }
@@ -194,5 +206,10 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger(AnimationStrings.attack);
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }
