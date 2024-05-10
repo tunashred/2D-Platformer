@@ -83,4 +83,12 @@ public class Damageable : MonoBehaviour
 
         return false;
     }
+
+    // now playercontroller is not directly dependent on the damageable component
+    // but now we need to rewrite LockVelocity for any script that needs it
+    public bool LockVelocity
+    {
+        get { return animator.GetBool(AnimationStrings.lockVelocity); }
+        set { animator.SetBool(AnimationStrings.lockVelocity, value); }
+    }
 }

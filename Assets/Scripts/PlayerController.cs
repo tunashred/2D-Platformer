@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 // you cant add a player controller to a game object unless a rigidbody already exists
 // and if there is a player controller, you cant move the rigidbody from the game object until the player
 // controller has been removed
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float jumpImpulse = 10f;
     private Vector2 _moveInput;
     private TouchingDirections _touchingDirections;
+    private Damageable damageable;
 
     public float CurrentMoveSpeed
     {
@@ -115,6 +116,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _touchingDirections = GetComponent<TouchingDirections>();
+        damageable = GetComponent<Damageable>();
     }
 
     // Start is called before the first frame update
@@ -124,23 +126,10 @@ public class PlayerController : MonoBehaviour
         // https://forum.unity.com/threads/animator-dont-use-setbool-string-name-with-string-parameter.406286/
     }
 
-    // now playercontroller is not directly dependent on the damageable component
-    // but now we need to rewrite LockVelocity for any script that needs it
-    public bool LockVelocity
-    {
-        get
-        {
-            return animator.GetBool(AnimationStrings.lockVelocity);
-        }
-        set
-        {
-            animator.SetBool(AnimationStrings.lockVelocity, value);
-        }
-    }
-    
+
     private void FixedUpdate()
     {
-        if (!LockVelocity)
+        if (!damageable.LockVelocity)
         {
             rb.velocity = new Vector2(_moveInput.x * CurrentMoveSpeed, rb.velocity.y);
         }

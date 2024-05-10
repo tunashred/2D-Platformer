@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
     public float walkSpeed = 3f;
@@ -13,6 +13,7 @@ public class Knight : MonoBehaviour
     private Rigidbody2D rb;
     private TouchingDirections _touchingDirections;
     private Animator animator;
+    private Damageable damageable;
 
     public enum WalkableDirection
     {
@@ -51,6 +52,7 @@ public class Knight : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
+        damageable = GetComponent<Damageable>();
     }
 
     // Start is called before the first frame update
@@ -88,10 +90,7 @@ public class Knight : MonoBehaviour
 
     public bool CanMove
     {
-        get
-        {
-            return animator.GetBool(AnimationStrings.canMove);
-        }
+        get { return animator.GetBool(AnimationStrings.canMove); }
     }
 
     // Update is called once per frame
@@ -107,13 +106,23 @@ public class Knight : MonoBehaviour
             FlipDirection();
         }
 
-        if (CanMove)
+        if (!damageable.LockVelocity)
         {
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            if (CanMove)
+            {
+                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+            }
         }
-        else
-        {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
-        }
+    }
+
+    // if we wanted to, we could have had rb.velocity set in damageable but we dont want that script to toy with physics
+    // bad or good idk
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }
