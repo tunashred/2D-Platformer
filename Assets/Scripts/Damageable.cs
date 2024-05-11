@@ -76,8 +76,10 @@ public class Damageable : MonoBehaviour
             _isInvincible = true;
 
             animator.SetTrigger(AnimationStrings.hitTrigger);
+            LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);
 
+            CharacterEvents.characterDamaged.Invoke(gameObject, damage);
             return true;
         }
 
@@ -90,5 +92,20 @@ public class Damageable : MonoBehaviour
     {
         get { return animator.GetBool(AnimationStrings.lockVelocity); }
         set { animator.SetBool(AnimationStrings.lockVelocity, value); }
+    }
+
+    public bool Heal(int healthRestore)
+    {
+        if (IsAlive && Health < MaxHealth)
+        {
+            int maxHeal = Mathf.Max(MaxHealth - Health, 0);
+            int actualHeal = Mathf.Min(maxHeal, healthRestore);
+            Health += actualHeal;
+
+            CharacterEvents.characterHealed(gameObject, actualHeal);
+            return true;
+        }
+
+        return false;
     }
 }
