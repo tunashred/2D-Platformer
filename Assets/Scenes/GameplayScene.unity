@@ -4456,11 +4456,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3856132193190978103, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.19
+      value: -4.254
       objectReference: {fileID: 0}
     - target: {fileID: 3856132193190978103, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.74
+      value: -0.804
       objectReference: {fileID: 0}
     - target: {fileID: 3856132193190978103, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4494,9 +4494,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4314677626780662054, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5512207883583612848, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
       propertyPath: m_Name
       value: KnightEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762996099181377881, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7585147452908660972, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
       propertyPath: m_Layer
