@@ -41,6 +41,9 @@ TagManager:
   - name: Background
     uniqueID: 3209430047
     locked: 0
+  - name: NoCollisionTile
+    uniqueID: 183734093
+    locked: 0
   - name: Ground
     uniqueID: 956455199
     locked: 0
