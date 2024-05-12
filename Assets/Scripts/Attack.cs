@@ -18,6 +18,7 @@ public class Attack : MonoBehaviour
             Vector2 deliveredKnockback =
                 transform.parent.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
 
+            Debug.Log(damageable + " got hit for " + attackDamage);
             bool gotHit = damageable.Hit(attackDamage, deliveredKnockback);
         }
     }
