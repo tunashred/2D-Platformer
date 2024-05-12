@@ -24,7 +24,7 @@ public class TouchingDirections : MonoBehaviour
     [SerializeField] private bool _isOnCeiling = true;
 
     private Vector2 wallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-    
+
     private void Awake()
     {
         touchingCol = GetComponent<CapsuleCollider2D>();

@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
-    public float walkSpeed = 3f;
+    public float walkAcceleration = 3f;
+    public float maxSpeed = 3;
     public float walkStopRate = 0.05f;
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
@@ -119,9 +121,11 @@ public class Knight : MonoBehaviour
 
         if (!damageable.LockVelocity)
         {
-            if (CanMove)
+            if (CanMove && _touchingDirections.IsGrounded)
             {
-                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+                rb.velocity = new Vector2(Mathf.Clamp(
+                    rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.deltaTime),
+                    -maxSpeed, maxSpeed), rb.velocity.y);
             }
             else
             {
