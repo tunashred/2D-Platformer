@@ -8,6 +8,7 @@ public class FlyingEye : MonoBehaviour
     public float flightSpeed = 2f;
     public float waypointReachedDistance = 0.1f;
     public DetectionZone biteDetectionZone;
+    public Collider2D deathCollider;
     public List<Transform> waypoints;
 
     private Animator animator;
@@ -51,7 +52,7 @@ public class FlyingEye : MonoBehaviour
             }
         }
     }
-    
+
     private void Flight()
     {
         // when you normalize a vector, it's just a direction without any speed
@@ -62,7 +63,7 @@ public class FlyingEye : MonoBehaviour
 
         rb.velocity = directionToWaypoint * flightSpeed;
         UpdateDirection();
-        
+
         if (distance <= waypointReachedDistance)
         {
             waypointNum++;
@@ -73,6 +74,11 @@ public class FlyingEye : MonoBehaviour
 
             nextWaypoint = waypoints[waypointNum];
         }
+    }
+
+    private void OnEnable()
+    {
+        damageable.damageableDeath.AddListener(OnDeath);
     }
 
     private void Start()
@@ -100,15 +106,18 @@ public class FlyingEye : MonoBehaviour
                 rb.velocity = Vector3.zero;
             }
         }
-        else
-        {
-            rb.gravityScale = 2f;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         HasTarget = biteDetectionZone.detectedColliders.Count > 0;
+    }
+
+    public void OnDeath()
+    {
+        rb.gravityScale = 2f;
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        deathCollider.enabled = true;
     }
 }

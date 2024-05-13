@@ -476,7 +476,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.78, y: 8.21, z: -10}
+  m_LocalPosition: {x: -6.26, y: -0.87, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -516,6 +516,17 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &583642117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7969478891645786484, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+  m_PrefabInstance: {fileID: 5712664121698374534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5bb880649bb0b7b8a5f4d7d3ca41475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &591960775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9177376636483982116, guid: acbb312166d4adf53a6d53456d0c3857, type: 3}
@@ -613,9 +624,9 @@ GameObject:
   m_Component:
   - component: {fileID: 623470318}
   m_Layer: 0
-  m_Name: EyeWaypoint1
+  m_Name: EyeWaypoint_1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -628,7 +639,7 @@ Transform:
   m_GameObject: {fileID: 623470317}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -812,6 +823,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66cd0baa26d767b95bd88fe87215244e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1529213759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1529213760}
+  m_Layer: 0
+  m_Name: EyeWaypoint_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1529213760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529213759}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18, y: 9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1890476645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1596993985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596993986}
+  m_Layer: 0
+  m_Name: EyeWaypoint_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1596993986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596993985}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1890476645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1665583115
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +984,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   followTarget: {fileID: 591960775}
+--- !u!1 &1704193394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704193395}
+  m_Layer: 0
+  m_Name: EyeWaypoint_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1704193395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704193394}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1890476645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1890476644
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +1045,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 623470318}
+  - {fileID: 1704193395}
+  - {fileID: 1596993986}
+  - {fileID: 1529213760}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1934399282
@@ -1021,7 +1128,7 @@ Transform:
   m_GameObject: {fileID: 1934399282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.78, y: 8.21, z: -10}
+  m_LocalPosition: {x: -6.26, y: -0.87, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2449,11 +2556,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3856132193190978103, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.47
+      value: -10.37
       objectReference: {fileID: 0}
     - target: {fileID: 3856132193190978103, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.3
+      value: -0.67
       objectReference: {fileID: 0}
     - target: {fileID: 3856132193190978103, guid: a19984ef0bc3fa296a3f03d735f094ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2554,11 +2661,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9177376636483982116, guid: acbb312166d4adf53a6d53456d0c3857, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.78
+      value: -6.26
       objectReference: {fileID: 0}
     - target: {fileID: 9177376636483982116, guid: acbb312166d4adf53a6d53456d0c3857, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.21
+      value: -0.87
       objectReference: {fileID: 0}
     - target: {fileID: 9177376636483982116, guid: acbb312166d4adf53a6d53456d0c3857, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2607,11 +2714,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 115544496355238861, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.581
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 115544496355238861, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.821
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 115544496355238861, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2653,10 +2760,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingEye
       objectReference: {fileID: 0}
+    - target: {fileID: 6145399022408420136, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: damageableDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145399022408420136, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: damageableDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 583642117}
+    - target: {fileID: 6145399022408420136, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: damageableDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145399022408420136, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: damageableDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FlyingEye, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145399022408420136, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: damageableDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6408380817925281194, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7969478891645786484, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969478891645786484, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 623470318}
+    - target: {fileID: 7969478891645786484, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1704193395}
+    - target: {fileID: 7969478891645786484, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1596993986}
+    - target: {fileID: 7969478891645786484, guid: 7bb3a83853d0c41d2a32138707523026, type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1529213760}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
