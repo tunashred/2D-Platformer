@@ -33,6 +33,25 @@ public class FlyingEye : MonoBehaviour
         }
     }
 
+    private void UpdateDirection()
+    {
+        Vector3 locScale = transform.localScale;
+        if (transform.localScale.x > 0)
+        {
+            if (rb.velocity.x < 0)
+            {
+                transform.localScale = new Vector3(-1 * locScale.x, locScale.y, locScale.z);
+            }
+        }
+        else
+        {
+            if (rb.velocity.x > 0)
+            {
+                transform.localScale = new Vector3(-1 * locScale.x, locScale.y, locScale.z);
+            }
+        }
+    }
+    
     private void Flight()
     {
         // when you normalize a vector, it's just a direction without any speed
@@ -42,7 +61,8 @@ public class FlyingEye : MonoBehaviour
         float distance = Vector2.Distance(nextWaypoint.position, transform.position);
 
         rb.velocity = directionToWaypoint * flightSpeed;
-
+        UpdateDirection();
+        
         if (distance <= waypointReachedDistance)
         {
             waypointNum++;
@@ -79,6 +99,10 @@ public class FlyingEye : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
             }
+        }
+        else
+        {
+            rb.gravityScale = 2f;
         }
     }
 

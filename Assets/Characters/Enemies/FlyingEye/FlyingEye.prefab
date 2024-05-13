@@ -289,7 +289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5bb880649bb0b7b8a5f4d7d3ca41475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flightSpeed: 2
+  waypointReachedDistance: 0.1
   biteDetectionZone: {fileID: 7197997489761481001}
+  waypoints: []
   hasTarget: 0
 --- !u!1 &6968211924086322157
 GameObject:
@@ -318,7 +321,7 @@ Transform:
   m_GameObject: {fileID: 6968211924086322157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.29, y: -0.27, z: 0}
+  m_LocalPosition: {x: 1.066, y: -0.318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -372,6 +375,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.09893215, y: 0.013645887}
-  m_Size: {x: 1.3938029, y: 1.3938029}
+  m_Offset: {x: 0.12396181, y: 0.061861575}
+  m_Size: {x: 1.4438622, y: 1.5402936}
   m_Direction: 0
