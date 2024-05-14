@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class UIManager : MonoBehaviour
@@ -47,5 +48,27 @@ public class UIManager : MonoBehaviour
             .GetComponent<TMP_Text>();
 
         tmpText.text = healthRestored.ToString();
+    }
+
+    public void OnExitGame(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            #if (UNITY_EDITOR || DEVELOPMENT_BUILD)
+                Debug.Log(this.name + " : " + this.GetType() + " : " + System.Reflection.MethodBase.GetCurrentMethod().Name);
+            #endif
+            
+            #if (UNITY_EDITOR)
+                UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+            
+            #if (UNITY_STANDALONE || UNITY_STANDALONE_LINUX)
+                Application.Quit();
+            #endif
+            
+            #if (UNITY_WEBGL)
+                SceneManager.LoadScene("QuitScene");
+            #endif
+        }
     }
 }
