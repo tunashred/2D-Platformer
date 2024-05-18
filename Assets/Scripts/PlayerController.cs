@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
-// you cant add a player controller to a game object unless a rigidbody already exists
-// and if there is a player controller, you cant move the rigidbody from the game object until the player
-// controller has been removed
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class PlayerController : MonoBehaviour
 {
@@ -15,9 +12,15 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 8f;
     public float airWalkSpeed = 3f;
     public float jumpImpulse = 10f;
+
     private Vector2 _moveInput;
     private TouchingDirections _touchingDirections;
     private Damageable damageable;
+    private StateScreens stateScreens;
+    private bool isPaused = false;
+
+    public UnityEvent OnPlayerDeath;
+    public UnityEvent OnPlayerWon;
 
     public float CurrentMoveSpeed
     {
@@ -29,36 +32,19 @@ public class PlayerController : MonoBehaviour
                 {
                     if (_touchingDirections.IsGrounded)
                     {
-                        if (IsRunning)
-                        {
-                            return runSpeed;
-                        }
-                        else
-                        {
-                            return walkSpeed;
-                        }
+                        return IsRunning ? runSpeed : walkSpeed;
                     }
-                    else
-                    {
-                        return airWalkSpeed;
-                    }
+
+                    return airWalkSpeed;
                 }
-                else
-                {
-                    // idle speed
-                    return 0;
-                }
-            }
-            else
-            {
-                // atacc
+
                 return 0;
             }
+
+            return 0;
         }
     }
 
-    // if i want to see these private booleans in the inspector
-    // then i can serialise the field as before
     [SerializeField] private bool _isMoving = false;
     [SerializeField] private bool _isRunning = false;
 
@@ -119,37 +105,44 @@ public class PlayerController : MonoBehaviour
         damageable = GetComponent<Damageable>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //TODO: optimization
-        // https://forum.unity.com/threads/animator-dont-use-setbool-string-name-with-string-parameter.406286/
-    }
-
-
     private void FixedUpdate()
     {
-        if (!damageable.LockVelocity)
+        if (!isPaused)
         {
-            rb.velocity = new Vector2(_moveInput.x * CurrentMoveSpeed, rb.velocity.y);
-        }
+            if (!damageable.LockVelocity)
+            {
+                rb.velocity = new Vector2(_moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+            }
 
-        animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+            animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
+        }
+    }
+    
+    public void PausePlayerActions()
+    {
+        isPaused = true;
+    }
+
+    public void ResumePlayerActions()
+    {
+        isPaused = false;
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        _moveInput = context.ReadValue<Vector2>();
-
-        if (IsAlive)
+        if (!isPaused)
         {
-            IsMoving = _moveInput != Vector2.zero;
+            _moveInput = context.ReadValue<Vector2>();
 
-            SetFacingDirection(_moveInput);
-        }
-        else
-        {
-            IsMoving = false;
+            if (IsAlive)
+            {
+                IsMoving = _moveInput != Vector2.zero;
+                SetFacingDirection(_moveInput);
+            }
+            else
+            {
+                IsMoving = false;
+            }
         }
     }
 
@@ -157,49 +150,52 @@ public class PlayerController : MonoBehaviour
     {
         if (moveInput.x > 0 && !IsFacingRight)
         {
-            //right
             IsFacingRight = true;
         }
         else if (moveInput.x < 0 && IsFacingRight)
         {
-            //left
             IsFacingRight = false;
         }
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (!isPaused)
         {
-            IsRunning = true;
-        }
-        else if (context.canceled)
-        {
-            IsRunning = false;
+            if (context.started)
+            {
+                IsRunning = true;
+            }
+            else if (context.canceled)
+            {
+                IsRunning = false;
+            }
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        // TODO: check if alive as well
-        if (context.started && _touchingDirections.IsGrounded && CanMove)
+        if (!isPaused)
         {
-            animator.SetTrigger(AnimationStrings.jump);
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            if (context.started && _touchingDirections.IsGrounded && CanMove)
+            {
+                animator.SetTrigger(AnimationStrings.jump);
+                rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            }
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (!isPaused && context.started)
         {
             animator.SetTrigger(AnimationStrings.attack);
         }
     }
-    
+
     public void OnRangedAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (!isPaused && context.started)
         {
             animator.SetTrigger(AnimationStrings.rangedAttack);
         }
@@ -207,6 +203,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit(int damage, Vector2 knockback)
     {
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        if (!isPaused)
+        {
+            rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+
+            if (!IsAlive)
+            {
+                if (OnPlayerDeath != null)
+                {
+                    OnPlayerDeath.Invoke();
+                }
+            }
+        }
     }
 }

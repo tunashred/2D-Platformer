@@ -8,6 +8,9 @@ using UnityEngine.Rendering;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject gameOverScreen;
+    public TMP_Text survivedText;
+    
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public Canvas gameCanvas;
