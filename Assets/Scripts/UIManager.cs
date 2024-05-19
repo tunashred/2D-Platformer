@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -61,16 +62,12 @@ public class UIManager : MonoBehaviour
                 Debug.Log(this.name + " : " + this.GetType() + " : " + System.Reflection.MethodBase.GetCurrentMethod().Name);
             #endif
             
-            #if (UNITY_EDITOR)
-                UnityEditor.EditorApplication.isPlaying = false;
+            #if (UNITY_EDITOR || UNITY_STANDALONE || UNITY_STANDALONE_LINUX)
+                SceneManager.LoadScene(0);
             #endif
-            
-            #if (UNITY_STANDALONE || UNITY_STANDALONE_LINUX)
-                Application.Quit();
-            #endif
-            
+
             #if (UNITY_WEBGL)
-                SceneManager.LoadScene("QuitScene");
+                SceneManager.LoadScene("QuitScene"); //doesnt work for some reason
             #endif
         }
     }
