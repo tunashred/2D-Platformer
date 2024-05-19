@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,27 +9,27 @@ public class Damageable : MonoBehaviour
 
     private Animator animator;
 
-    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int maxHealth = 100;
 
-    [SerializeField] private float _timeSinceHit = 0;
+    [SerializeField] private float timeSinceHit = 0;
     [SerializeField] public float invincibilityTime = 0.25f;
 
     public int MaxHealth
     {
-        get { return _maxHealth; }
-        set { _maxHealth = value; }
+        get { return maxHealth; }
+        set { maxHealth = value; }
     }
 
-    [SerializeField] private bool _isAlive = true;
+    [SerializeField] private bool isAlive = true;
 
-    [SerializeField] private bool _isInvincible = false;
+    [SerializeField] private bool isInvincible = false;
 
     public bool IsAlive
     {
-        get { return _isAlive; }
+        get { return isAlive; }
         set
         {
-            _isAlive = value;
+            isAlive = value;
             animator.SetBool(AnimationStrings.isAlive, value);
 
             if (value == false)
@@ -50,7 +47,7 @@ public class Damageable : MonoBehaviour
         set
         {
             health = value;
-            healthChanged?.Invoke(health, _maxHealth);
+            healthChanged?.Invoke(health, maxHealth);
             if (health <= 0)
             {
                 IsAlive = false;
@@ -65,24 +62,24 @@ public class Damageable : MonoBehaviour
 
     public void Update()
     {
-        if (_isInvincible)
+        if (isInvincible)
         {
-            if (_timeSinceHit > invincibilityTime)
+            if (timeSinceHit > invincibilityTime)
             {
-                _isInvincible = false;
-                _timeSinceHit = 0;
+                isInvincible = false;
+                timeSinceHit = 0;
             }
 
-            _timeSinceHit += Time.deltaTime;
+            timeSinceHit += Time.deltaTime;
         }
     }
 
     public bool Hit(int damage, Vector2 knockback)
     {
-        if (IsAlive && !_isInvincible)
+        if (IsAlive && !isInvincible)
         {
             Health -= damage;
-            _isInvincible = true;
+            isInvincible = true;
 
             animator.SetTrigger(AnimationStrings.hitTrigger);
             LockVelocity = true;
@@ -114,7 +111,6 @@ public class Damageable : MonoBehaviour
             CharacterEvents.characterHealed(gameObject, actualHeal);
             return true;
         }
-
         return false;
     }
 }

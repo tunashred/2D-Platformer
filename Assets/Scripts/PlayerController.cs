@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -45,25 +42,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    [SerializeField] private bool _isMoving = false;
-    [SerializeField] private bool _isRunning = false;
+    [SerializeField] private bool isMoving = false;
+    [SerializeField] private bool isRunning = false;
 
     public bool IsMoving
     {
-        get { return _isMoving; }
+        get { return isMoving; }
         set
         {
-            _isMoving = value;
+            isMoving = value;
             animator.SetBool(AnimationStrings.isMoving, value);
         }
     }
 
     public bool IsRunning
     {
-        get { return _isRunning; }
+        get { return isRunning; }
         set
         {
-            _isRunning = value;
+            isRunning = value;
             animator.SetBool(AnimationStrings.isRunning, value);
         }
     }
@@ -117,7 +114,7 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
         }
     }
-    
+
     public void PausePlayerActions()
     {
         isPaused = true;

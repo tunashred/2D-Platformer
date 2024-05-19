@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +6,6 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthSlider;
     public TMP_Text healthBarText;
-
     private Damageable playerDamageable;
 
     private float CalculateSliderPercentage(float currentHealth, float maxHealth)
@@ -44,11 +40,5 @@ public class HealthBar : MonoBehaviour
     private void OnDisable()
     {
         playerDamageable.healthChanged.RemoveListener(OnPlayerHealthChanged);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

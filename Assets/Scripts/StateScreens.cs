@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,7 +22,7 @@ public class StateScreens : MonoBehaviour
         {
             playerController = FindObjectOfType<PlayerController>();
         }
-    
+
         pauseText.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(false);
         survivedText.gameObject.SetActive(false);
@@ -90,7 +87,7 @@ public class StateScreens : MonoBehaviour
             playerController.OnPlayerWon.Invoke();
         }
     }
-    
+
     private void TogglePauseGame()
     {
         gamePaused = !gamePaused;

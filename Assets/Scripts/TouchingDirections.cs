@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchingDirections : MonoBehaviour
@@ -29,11 +26,6 @@ public class TouchingDirections : MonoBehaviour
     {
         touchingCol = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
     }
 
     // Changed from Update() to FixedUpdate because should run at the same time

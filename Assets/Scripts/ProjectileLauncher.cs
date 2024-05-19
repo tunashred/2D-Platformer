@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileLauncher : MonoBehaviour
@@ -9,11 +7,6 @@ public class ProjectileLauncher : MonoBehaviour
 
     public void FireProjectile()
     {
-        /*
-         * arg1: projectile copy
-         * arg2: position to spawn
-         * arg3: orientation
-         */
         GameObject projectile =
             Instantiate(projectilePrefab, launchPoint.position, projectilePrefab.transform.rotation);
         Vector3 originalScale = projectile.transform.localScale;

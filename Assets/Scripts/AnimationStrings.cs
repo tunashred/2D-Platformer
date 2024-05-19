@@ -1,7 +1,5 @@
 public class AnimationStrings
 {
-    // uppercase = property
-    // lowercase = field
     internal static string isMoving = "isMoving";
     internal static string isRunning = "isRunning";
     internal static string isGrounded = "isGrounded";

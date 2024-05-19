@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
@@ -58,11 +54,6 @@ public class Knight : MonoBehaviour
         damageable = GetComponent<Damageable>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     private void FlipDirection()
     {
         if (WalkDirection == WalkableDirection.Left)
@@ -72,10 +63,6 @@ public class Knight : MonoBehaviour
         else if (WalkDirection == WalkableDirection.Right)
         {
             WalkDirection = WalkableDirection.Left;
-        }
-        else
-        {
-            Debug.LogError("Current walkable direction is not set to legal value of right or left");
         }
     }
 
