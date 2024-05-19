@@ -214,8 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f129017ef167a20f86425c3ef47add3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 25
-  knockback: {x: 5, y: 2}
+  attackDamage: 15
+  knockback: {x: 5, y: 2.4}
 --- !u!1 &5512207883583612848
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkAcceleration: 50
-  maxSpeed: 3
+  maxSpeed: 3.2
   walkStopRate: 0.05
   attackZone: {fileID: 1840538614574690841}
   cliffDetectionZone: {fileID: 9141098910153520399}
@@ -460,11 +460,14 @@ MonoBehaviour:
   damageableDeath:
     m_PersistentCalls:
       m_Calls: []
-  _maxHealth: 100
-  _timeSinceHit: 0
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHealth: 100
+  timeSinceHit: 0
   invincibilityTime: 0.25
-  _isAlive: 1
-  _isInvincible: 0
+  isAlive: 1
+  isInvincible: 0
   health: 100
 --- !u!1 &7585147452908660972
 GameObject:
